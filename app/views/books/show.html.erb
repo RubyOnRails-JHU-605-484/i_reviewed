@@ -1,0 +1,30 @@
+<div class="book">
+	<span class="book_link"><%= "#{ @book.name } (#{@book.author})" %></span>
+	<%= link_to 'Edit', edit_book_path(@book) %>
+</div>
+<p />
+
+<div id="notes">
+	<%= render @book.notes %>
+</div>
+
+<%= form_with(model: @note, local: true, 
+	url: [@book, @note]) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note, size: "40x12" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Add a note" %>
+  </div>
+<% end %>
+<%= link_to 'Back', books_path %>
+
+
+
